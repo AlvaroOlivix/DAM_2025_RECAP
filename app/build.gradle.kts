@@ -42,6 +42,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    implementation (libs.google.gson)
+
+
+    //TestPropio
+    testImplementation (libs.mockito.core)
+    testImplementation (libs.mockito.kotlin)
+    //Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
