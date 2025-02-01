@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DAM_2025_RECAP</string>
+    <string name="local_data">Local_Data</string>
 </resources>
