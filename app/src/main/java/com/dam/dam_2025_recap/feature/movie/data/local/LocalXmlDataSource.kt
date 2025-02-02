@@ -4,7 +4,9 @@ import android.content.Context
 import com.dam.dam_2025_recap.R
 import com.dam.dam_2025_recap.feature.movie.domain.Movie
 import com.google.gson.Gson
+import org.koin.core.annotation.Single
 
+@Single
 class LocalXmlDataSource(private val context: Context) {
 
     private val sharedPref =

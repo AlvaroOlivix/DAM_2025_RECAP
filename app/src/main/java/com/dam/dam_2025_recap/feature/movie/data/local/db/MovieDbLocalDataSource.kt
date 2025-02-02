@@ -1,8 +1,10 @@
 package com.dam.dam_2025_recap.feature.movie.data.local.db
 
 import com.dam.dam_2025_recap.feature.movie.domain.Movie
+import org.koin.core.annotation.Single
 import java.util.Date
 
+@Single
 class MovieDbLocalDataSource(private val movieDAO: MovieDAO) {
 
     private val cache = 60000
