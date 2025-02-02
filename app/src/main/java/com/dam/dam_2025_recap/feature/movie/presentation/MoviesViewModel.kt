@@ -29,7 +29,7 @@ class MoviesViewModel(private val getMovieListUseCase: GetMovieListUseCase) : Vi
         }
     }
     data class UiState(
-        val movies: List<Movie> = emptyList(),
+        val movies: List<Movie>? = emptyList(),
         val error: String? = null,
         val loading: Boolean = false
     )

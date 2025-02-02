@@ -1,16 +1,13 @@
-package com.dam.dam_2025_recap.feature.movie.presentation
+package com.dam.dam_2025_recap.feature.movie.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.room.Room
 import com.dam.dam_2025_recap.R
 import com.dam.dam_2025_recap.core.data.local.RecapDataBase
 import com.dam.dam_2025_recap.feature.movie.data.local.db.toEntity
-import com.dam.dam_2025_recap.feature.movie.data.remote.MockRemoteDataSource
 import com.dam.dam_2025_recap.feature.movie.domain.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
