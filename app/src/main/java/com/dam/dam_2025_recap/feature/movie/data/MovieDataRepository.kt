@@ -1,5 +1,6 @@
 package com.dam.dam_2025_recap.feature.movie.data
 
+import com.dam.dam_2025_recap.feature.movie.data.local.LocalXmlDataSource
 import com.dam.dam_2025_recap.feature.movie.data.local.db.MovieDbLocalDataSource
 import com.dam.dam_2025_recap.feature.movie.data.local.db.toModel
 import com.dam.dam_2025_recap.feature.movie.data.remote.MockRemoteDataSource
@@ -10,7 +11,7 @@ import org.koin.core.annotation.Single
 
 @Single
 class MovieDataRepository(
-    private val localDataSource: MovieDbLocalDataSource,
+    private val localDataSource: LocalXmlDataSource,
     private val remoteDataSource: MockRemoteDataSource
 ) : MovieRepository {
     override suspend fun getMovies(): List<Movie> {
@@ -21,7 +22,7 @@ class MovieDataRepository(
                 localDataSource.saveMovies(remoteMovies)
                 remoteMovies
             } else {
-                localMovies.map { it.toModel() }
+               localMovies
             }
         } catch (e: Exception) {
             emptyList()
@@ -36,7 +37,7 @@ class MovieDataRepository(
                 localDataSource.saveMovie(remoteMovie!!)
                 remoteMovie
             } else {
-                localMovie.toModel()
+                localMovie
             }
         } catch (e: Exception) {
             Movie("error", "error", "error", "error")

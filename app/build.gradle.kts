@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.safeargs)
 }
 
 android {
@@ -68,6 +69,9 @@ dependencies {
 
     implementation (libs.androidx.navigation.fragment)
     implementation (libs.androidx.navigation.ui)
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     //TestPropio
     testImplementation(libs.mockito.core)

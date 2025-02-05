@@ -7,16 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dam.dam_2025_recap.databinding.FragmentMovieListBinding
 import com.dam.dam_2025_recap.feature.movie.domain.Movie
 import com.dam.dam_2025_recap.feature.movie.presentation.MoviesViewModel
 import com.dam.dam_2025_recap.feature.movie.presentation.adapter.MovieAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesFragment : Fragment() {
 
     private var _binding: FragmentMovieListBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: MoviesViewModel by viewModel()
+    private val movieAdapter = MovieAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,23 +28,24 @@ class MoviesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
-        //setUpView()
+        setUpView()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpObservers()
+        viewModel.loadMovies()
     }
 
-    fun setUpObservers() {
+    private fun setUpObservers() {
         val observer = Observer<MoviesViewModel.UiState> { view ->
 
             if (view.error != null) {
                 Log.d("@dev", "Error")
             }
             view.movies?.let {
-                //bindData(it)
+                bindData(it)
             }
             if (view.loading) {
                 Log.d("@dev", "Loading")
@@ -48,30 +53,39 @@ class MoviesFragment : Fragment() {
                 Log.d("@dev", "Cargado")
             }
         }
+        viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
-    fun bindData(movies: List<Movie>) {
-        //Si es un recycler se llama a adapter.
-
-    }
-    fun setUpView() {
-// En tu Activity/Fragment:
-        val adapter = MovieAdapter()
-       /* adapter. { movieId ->
-            // Acción al clickear un elemento (ej: navegar a otro fragment)
-            Log.d("@dev", "ID clickeado: $movieId")
-            findNavController().navigate(R.id.action_to_detail)
+    private fun setUpView() {
+        //Se crea despues de definir el adapter y sus clases
+        binding.apply {
+            listRecycler.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
+            movieAdapter.setOnClick {
+                navigateToDetail(it)
+            }
+            listRecycler.adapter = movieAdapter
         }
-
-        */
-
-        //recyclerView.adapter = adapter
-
     }
 
+    private fun bindData(movies: List<Movie>) {
+        //Si es un recycler se llama a adapter y si es un ListAdapter se usa submitList.
+        movieAdapter.submitList(movies)
+    }
+
+    private fun navigateToDetail(movieId: String) {
+        findNavController().navigate(MoviesFragmentDirections.actionMovieListToMovieDetail(movieId))
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
+
+
+
+

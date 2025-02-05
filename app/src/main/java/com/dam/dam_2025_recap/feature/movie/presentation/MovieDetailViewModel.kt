@@ -18,14 +18,16 @@ class MovieDetailViewModel(
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
-    fun loadMovies() {
+    fun loadMovie(movieId: String) {
         _uiState.value = UiState(loading = true)
         viewModelScope.launch(Dispatchers.IO) {
-        }
+                val movie = getMovieUseCase(movieId)
+                _uiState.postValue(UiState(movie = movie))
+            }
     }
     data class UiState(
-        private val movie: Movie? = null,
-        private val error: String? = null,
-        private val loading: Boolean = false
+        val movie: Movie? = null,
+        val error: String? = null,
+        val loading: Boolean = false
     )
 }

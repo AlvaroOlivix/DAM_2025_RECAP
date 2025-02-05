@@ -2,9 +2,22 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@layout/fragment_movie_list">
-
-
+    app:startDestination="@id/fragment_movie_list">
+    <fragment
+        android:id="@+id/fragment_movie_list"
+        android:name="com.dam.dam_2025_recap.feature.movie.presentation.ui.MoviesFragment">
+        <action
+            android:id="@+id/action_movie_list_to_movie_detail"
+            app:destination="@id/fragment_movie_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_movie_detail"
+        android:name="com.dam.dam_2025_recap.feature.movie.presentation.ui.MovieDetailFragment">
+        <argument
+            android:name="movieId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
 
 
 </navigation>
