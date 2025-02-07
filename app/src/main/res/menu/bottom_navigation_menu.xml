@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_1"
+        android:enabled="true"
+        android:visible="true"
+        android:icon="@drawable/baseline_movie_24"
+        android:title="@string/text_label_1"/>
+    <item
+        android:id="@+id/item_2"
+        android:enabled="true"
+        android:visible="true"
+        android:titleCondensed="HOla"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/inicio"/>
+    <item
+        android:id="@+id/item_3"
+        android:enabled="true"
+        android:visible="true"
+        android:titleCondensed="HOla"
+        android:icon="@drawable/baseline_add_to_queue_24"
+        android:title="@string/text_label_2"/>
+</menu>

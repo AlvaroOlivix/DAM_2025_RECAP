@@ -2,4 +2,8 @@
     <string name="app_name">DAM_2025_RECAP</string>
     <string name="local_data">Local_Data</string>
     <string name="content">Content</string>
+    <string name="text_label_1">Películas</string>
+    <string name="text_label_2">Series</string>
+    <string name="peliculas">PELICULAS</string>
+    <string name="inicio">Inicio</string>
 </resources>
