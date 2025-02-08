@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DAM_2025_RECAP</string>
-    <string name="local_data">Local_Data</string>
+    <string name="local_data">Local_Data_Movies</string>
+    <string name="local_data_series">Local_Data_Series</string>
     <string name="content">Content</string>
     <string name="text_label_1">Películas</string>
     <string name="text_label_2">Series</string>
